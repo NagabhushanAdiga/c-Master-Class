@@ -1,0 +1,77 @@
+{
+  "name": "auto-commit-message-bot",
+  "displayName": "Auto Commit Message Bot",
+  "description": "Automatically generates commit messages as soon as files are staged in the Source Control view.",
+  "version": "0.0.1",
+  "publisher": "workspace",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "git",
+    "commit",
+    "automation"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:scm",
+    "onCommand:autoCommitMessage.regenerate"
+  ],
+  "main": "./extension.js",
+  "extensionDependencies": [
+    "vscode.git"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "autoCommitMessage.regenerate",
+        "title": "Auto Commit Message: Regenerate"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Auto Commit Message Bot",
+      "properties": {
+        "autoCommitMessage.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Turn automatic commit message generation on or off."
+        },
+        "autoCommitMessage.debounce": {
+          "type": "integer",
+          "default": 300,
+          "minimum": 0,
+          "description": "Delay (in milliseconds) before generating a new commit message after staged changes are detected."
+        },
+        "autoCommitMessage.replaceUserMessage": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, the extension can overwrite a custom commit message that you have already started typing."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint . --ext .js --max-warnings=0 || true",
+    "package": "vsce package",
+    "test": "node ./scripts/no-tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NagabhushanAdiga/c-Master-Class.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NagabhushanAdiga/c-Master-Class/issues"
+  },
+  "homepage": "https://github.com/NagabhushanAdiga/c-Master-Class#readme",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "globals": "^15.11.0",
+    "@vscode/vsce": "^3.7.0",
+    "eslint": "^9.14.0"
+  }
+}

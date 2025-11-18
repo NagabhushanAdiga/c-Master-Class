@@ -1,21 +1,49 @@
-# UltimateCSharpMasterclass
+# Auto Commit Message Bot
 
-Hello! 
+A lightweight VS Code extension that watches staged changes and automatically fills in the Source Control commit message with a context-aware summary. No buttons to click—stage a file and a draft message appears instantly. You can also run the "Auto Commit Message: Regenerate" command at any time to refresh the summary.
 
-My name is Krystyna. Welcome to my GitHub.
+## Features
 
-This repository is part of my  **"Ultimate C# Masterclass"** course, which you can find under this link: https://www.udemy.com/course/ultimate-csharp-masterclass/?referralCode=43763BBDA97D7D0B571A
+- 🚀 **Automatic summaries** as soon as new files are staged
+- 🧠 **Heuristic analysis** that blends file metadata with staged diff highlights
+- 🛡️ **User-friendly safeguards** so manually edited messages are not overwritten (unless you opt in)
+- ⚙️ **Configurable debounce** delay to avoid noisy updates while staging many files
+- 📝 **Command palette action** for on-demand regeneration
 
-## FAQ:
+## Requirements
 
-### Q1: How do I download the files?
-A: If you're not familiar with Git and just want to download the entire solution, click the green button saying "Code", and then select the "Download ZIP". If you know some Git, just clone this repository to your machine.
+- VS Code 1.85.0 or newer
+- The built-in `Git` extension (shipped with VS Code)
 
-### Q2: How do I open those files?
-A: Simply open the UltimateCSharpMasterclass.sln file with Visual Studio. 
+## Getting started
 
-### Q3: What are the projects in this solution?
-A: Projects in this solution correspond to sections in the course. There are separate projects for assignments and sometimes helper projects for special use cases. Project "00_Exercises" contains the solutions of in-browser exercises you can solve within Udemy.
+1. Clone this repository and install dependencies:
+   ```bash
+   npm install
+   ```
+2. Open the folder in VS Code and press `F5` to launch the extension host.
+3. Stage one or more files in the Source Control view—the commit box will be populated automatically.
 
-### Q4: How do I run a particular project?
-A: Right-click on it in Visual Studio, select "Set as startup project" and click "Run" in the top menu of Visual Studio.
+## Settings
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `autoCommitMessage.enable` | `true` | Master toggle for the extension. |
+| `autoCommitMessage.debounce` | `300` | Delay (ms) before regenerating a message after staged changes are detected. |
+| `autoCommitMessage.replaceUserMessage` | `false` | Allow the bot to overwrite a message you already edited. |
+
+## Command palette
+
+- `Auto Commit Message: Regenerate` — Force the extension to analyze staged files again and refresh the draft.
+
+## Packaging
+
+Build a `.vsix` package with:
+```bash
+npm run package
+```
+The resulting file can be installed via `code --install-extension <file>.vsix`.
+
+## Contributing
+
+Issues and pull requests are welcome. Please run `npm run lint` before submitting changes.
